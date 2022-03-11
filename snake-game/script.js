@@ -88,12 +88,9 @@ function teleport(snake) {
   }
 }
 
-function eat(snake, apple, apple2) {
+function eat(snake, apple) {
   if (snake.position.x == apple.position.x && snake.position.y == apple.position.y) {
     apple.position = initPosition();
-    snake.score++;
-  } else if (snake.position.x == apple2.position.x && snake.position.y == apple2.position.y) {
-    apple2.position = initPosition();
     snake.score++;
   }
 }
@@ -101,25 +98,29 @@ function eat(snake, apple, apple2) {
 function moveLeft(snake) {
   snake.position.x--;
   teleport(snake);
-  eat(snake, apple, apple2);
+  eat(snake, apple);
+  eat(snake, apple2);
 }
 
 function moveRight(snake) {
   snake.position.x++;
   teleport(snake);
-  eat(snake, apple, apple2);
+  eat(snake, apple);
+  eat(snake, apple2);
 }
 
 function moveDown(snake) {
   snake.position.y++;
   teleport(snake);
-  eat(snake, apple, apple2);
+  eat(snake, apple);
+  eat(snake, apple2);
 }
 
 function moveUp(snake) {
   snake.position.y--;
   teleport(snake);
-  eat(snake, apple, apple2);
+  eat(snake, apple);
+  eat(snake, apple2);
 }
 
 function move(snake) {
