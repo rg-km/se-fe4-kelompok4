@@ -1,4 +1,4 @@
-const CELL_SIZE = 20;
+const CELL_SIZE = 40;
 const CANVAS_SIZE = 600;
 //made faster
 const REDRAW_INTERVAL = 50;
@@ -53,9 +53,19 @@ let apple2 = {
   position: initPosition(),
 };
 
-function drawCell(ctx, x, y, color) {
-  ctx.fillStyle = color;
-  ctx.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+function drawApple(ctx, x, y) {
+  let img = document.getElementById('apple');
+  ctx.drawImage(img, x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+}
+
+function drawSnakeHead(ctx, x, y) {
+  let img = document.getElementById('snakeHead');
+  ctx.drawImage(img, x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+}
+
+function drawSnakeBody(ctx, x, y) {
+  let img = document.getElementById('snakeBody');
+  ctx.drawImage(img, x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
 }
 
 function drawScore(snake) {
@@ -70,25 +80,47 @@ function drawScore(snake) {
   scoreCtx.fillStyle = snake.color;
   scoreCtx.fillText(snake.score, 10, scoreCanvas.scrollHeight / 2);
 }
-
 function draw() {
   setInterval(function () {
     let snakeCanvas = document.getElementById('snakeBoard');
     let ctx = snakeCanvas.getContext('2d');
-
     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-    drawCell(ctx, snake1.head.x, snake1.head.y, snake1.color);
+    drawSnakeHead(ctx, snake1.head.x, snake1.head.y, snake1.color);
     for (let i = 1; i < snake1.body.length; i++) {
-      drawCell(ctx, snake1.body[i].x, snake1.body[i].y, snake1.color);
+      drawSnakeBody(ctx, snake1.body[i].x, snake1.body[i].y, snake1.color);
     }
-
-    drawCell(ctx, apple.position.x, apple.position.y, apple.color);
-    drawCell(ctx, apple2.position.x, apple2.position.y, apple2.color);
+    // drawCell(ctx, apple.position.x, apple.position.y, apple.color);
+    drawApple(ctx, apple.position.x, apple.position.y, apple.color);
+    drawApple(ctx, apple2.position.x, apple2.position.y, apple2.color);
 
     drawScore(snake1);
   }, REDRAW_INTERVAL);
 }
+
+// function draw() {
+//   setInterval(function () {
+//     let snakeCanvas = document.getElementById('snakeBoard');
+//     let ctx = snakeCanvas.getContext('2d');
+
+//     ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+//     drawSnakeHead(ctx, snake1.head.x, snake1.head.y, snake1.color);
+//     for (let i = 1; i < snake1.body.length; i++) {
+//       drawSnakeBody(ctx, snake1.body[i].x, snake1.body[i].y, snake1.color);
+//     }
+
+//     // mengganti dengan gambar apel
+//     var img = document.getElementById('apple');
+//     drawApple(img, apple.position.x * CELL_SIZE, apple.position.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+//     drawApple(img, apple2.position.x * CELL_SIZE, apple2.position.y * CELL_SIZE, CELL_SIZE, CELL_SIZE);
+
+//     // drawCell(ctx, apple.position.x, apple.position.y, apple.color);
+//     // drawCell(ctx, apple2.position.x, apple2.position.y, apple2.color);
+
+//     drawScore(snake1);
+//   }, REDRAW_INTERVAL);
+// }
 
 function teleport(snake) {
   if (snake.head.x < 0) {
