@@ -142,6 +142,11 @@ function eat(snake, apple) {
     apple.position = initPosition();
     snake.score++;
     snake.body.push({ x: snake.head.x, y: snake.head.y });
+=======
+  if (snake.position.x == apple.position.x && snake.position.y == apple.position.y) {
+    apple.position = initPosition();
+    snake.score++;
+
   }
 }
 
