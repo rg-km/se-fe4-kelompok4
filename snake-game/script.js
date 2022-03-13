@@ -109,13 +109,11 @@ function draw() {
     }
 
     // drawCell(ctx, apple.position.x, apple.position.y, apple.color);
-    drawApple(ctx, apple.position.x, apple.position.y, apple.color);
+    drawApple(ctx, apple1.position.x, apple1.position.y, apple1.color);
     drawApple(ctx, apple2.position.x, apple2.position.y, apple2.color);
 
-
-    drawCell(ctx, apple1.position.x, apple1.position.y, apple1.color);
-    drawCell(ctx, apple2.position.x, apple2.position.y, apple2.color);
-
+    // drawCell(ctx, apple1.position.x, apple1.position.y, apple1.color);
+    // drawCell(ctx, apple2.position.x, apple2.position.y, apple2.color);
 
     drawScore(snake1);
   }, REDRAW_INTERVAL);
@@ -169,7 +167,6 @@ function eat(snake, apple) {
     // if (snake.position.x == apple.position.x && snake.position.y == apple.position.y) {
     //   apple.position = initPosition();
     //   snake.score++;
-
   }
 }
 
@@ -178,7 +175,6 @@ function kebut() {
   snake.speed = MOVE_INTERVAL;
   if (snake.score % 5 == 0) {
     snake.speed = (100 - snake.speed) * -1;
-
   }
 }
 //----------------------
